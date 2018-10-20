@@ -1,1 +1,1 @@
-Sweet CSS clock and ticking time display. 
+**Sweet CSS clock and ticking time display.**
