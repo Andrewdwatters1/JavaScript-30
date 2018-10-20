@@ -1,0 +1,43 @@
+.background {
+  background-image: url('./background.jpg');
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-size: cover;
+}
+#drumset {
+  height: 60vh;
+  width: 85vw;
+  margin: 40vh auto 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.drum {
+  border: solid black 3px;
+  border-radius: 5px;
+  background: linear-gradient( rgba(243, 156, 18), rgb(241, 148, 138));
+  opacity: .8;
+  font-size: 40px;
+  font-weight: bold;
+  width: 6vw;
+  height: 4vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.drum:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+.strike {
+  border: 5px solid black;
+  opacity: 1;
+  font-size: 50px;
+}
