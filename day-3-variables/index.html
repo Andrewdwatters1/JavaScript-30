@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>CSS Variables</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div class="controls">
+
+    <label for="border">Border: </label>
+    <input type="range" name="border" min="0" max="50" value="0" data-sizing="px" id="border" />
+
+    <label for="borderColor">Border Color: </label>
+    <input type="color" name="borderColor" value="#ff0000" />
+
+    <label for="radius">Radius: </label>
+    <input type="range" name="radius" min="0" max="250" value="0" data-sizing="px" />
+
+    <label for="blur">Blur: </label>
+    <input type="range" name="blur" min="0" max="25" value="0" data-sizing="px" />
+
+    <label for="opacity">Opacity: </label>
+    <input type="range" name="opacity" min="0" max="100" value="100" data-sizing="%" />
+
+    <label for="hue">Hue: </label>
+    <input type="color" name="picBackground" value="#DDDDDD" />
+
+    <label for="hueOpacity">Hue Opacity: </label>
+    <input type="range" name="hueOpacity" min="0" max="100" value="0" data-sizing="%" />
+
+  </div>
+  <div class="img-cont">
+    <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500" alt="image" id="img" />
+    <div class="img-overlay"></div>
+  </div>
+</body>
+
+</html>
+
+
+<style>
+
+  :root {
+    --borderColor: #ff0000;
+    --radius: 0px;
+    --blur: 0px;
+    --opacity: 1;
+    --hueOpacity: 0;
+    --picBackground: rgb(221, 221, 221);
+    --border: 0px;
+  }
+
+  img {
+    filter: blur(var(--blur));
+    background: var(--picBackground);
+    border: solid;
+    border-color: var(--borderColor);
+    border-width: var(--border);
+    opacity: var(--opacity);
+    border-radius: var(--radius);
+    width: 100vw;
+    max-height: 93vh;
+    position: absolute;
+    top: 7vh;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+  }
+
+  .img-overlay {
+    background-color: var(--picBackground);
+    opacity: var(--hueOpacity);
+    z-index: 1;
+    position: absolute;
+    top: 7vh;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+
+  .img-cont {
+    width: 100vw;
+    height: 93vh;
+    margin: 7vh auto 0 auto;
+  }
+  
+</style>
+
+
+<script>
+
+  const inputs = document.querySelectorAll('.controls input');
+  inputs.forEach((e) => e.addEventListener('change', updateValue));
+  inputs.forEach((e) => e.addEventListener('mousemove', updateValue));
+
+  function updateValue() {
+    let finalVal;
+    const suffix = this.dataset.sizing || '';
+    if (suffix === "%") finalVal = parseInt(this.value + suffix) / 100;
+    else finalVal = this.value + suffix;
+    document.documentElement.style.setProperty(`--${this.name}`, finalVal);
+  }
+
+</script>
